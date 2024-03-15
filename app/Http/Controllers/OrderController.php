@@ -15,17 +15,18 @@ class OrderController extends Controller
 
     public function checkout(Request $request)
     {
-        $request->request->add([
-            'total_price' => $request->quantity * 50000,
-            'status' => 'Unpaid',
-        ]);
+
 
         $order = Order::create([
             'name' => $request->input('name'),
             'phone' => $request->input('phone'),
             'quantity' => $request->input('quantity'),
             'address' => $request->input('address'),
+            'total_price' => $request->quantity * 50000,
+            'status' => 'Unpaid',
         ]);
+
+
 
         //SAMPLE REQUEST START HERE
 
@@ -50,7 +51,8 @@ class OrderController extends Controller
         );
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
+        dd($snapToken, $order);
 
-        return view('')
+        return view('checkout', compact('order', 'snapToken'));
     }
 }

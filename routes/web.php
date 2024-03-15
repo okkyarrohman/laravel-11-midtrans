@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::get('/order', [OrderController::class, 'index']);
 Route::post('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+Route::get('/struk', [OrderController::class, 'struk']);
